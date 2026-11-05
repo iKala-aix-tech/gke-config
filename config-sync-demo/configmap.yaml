@@ -5,4 +5,4 @@ metadata:
   name: app-settings
   namespace: config-sync-demo
 data:
-  message: "hello from git v1"
+  message: "hello from git v2, Today is thursday and it's sooooo hottt"
