@@ -1,5 +1,5 @@
 # Canary: 90% to v1, 10% to v2. Change the weights, push, and watch the split move.
-apiVersion: networking.istio.io/v1
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: hello

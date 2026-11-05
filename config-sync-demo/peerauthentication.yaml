@@ -1,6 +1,6 @@
 # Strict mTLS: pods in this namespace accept only mesh (mTLS) traffic.
 # A pod without a sidecar can no longer reach them.
-apiVersion: security.istio.io/v1
+apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
   name: default
