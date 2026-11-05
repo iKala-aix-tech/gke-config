@@ -1,0 +1,18 @@
+# Policy Controller lab: only allow images from trusted registries in config-sync-demo.
+# dryrun = report violations only (Console Policy dashboard / `kubectl get k8sallowedrepos`).
+# Next step: change to `deny`, push, delete the loadgen pod and watch it get rejected.
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRepos
+metadata:
+  name: allowed-repos
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    namespaces: ["config-sync-demo"]
+  parameters:
+    repos:
+      - "us-docker.pkg.dev/google-samples/"   # hello-app v1/v2
+      - "gcr.io/gke-release/"                 # istio-proxy sidecar injected by the mesh
