@@ -1,0 +1,19 @@
+# Canary: 90% to v1, 10% to v2. Change the weights, push, and watch the split move.
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: hello
+  namespace: config-sync-demo
+spec:
+  hosts:
+    - hello
+  http:
+    - route:
+        - destination:
+            host: hello
+            subset: v1
+          weight: 90
+        - destination:
+            host: hello
+            subset: v2
+          weight: 10

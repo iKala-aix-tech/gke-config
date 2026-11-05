@@ -1,0 +1,14 @@
+# One Service for both versions (selects only `app: hello`).
+# Without the mesh, traffic splits by pod count (2:1). The VirtualService overrides that.
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+  namespace: config-sync-demo
+spec:
+  selector:
+    app: hello
+  ports:
+    - name: http          # Istio uses the port name/appProtocol to know it's HTTP
+      port: 80
+      targetPort: 8080

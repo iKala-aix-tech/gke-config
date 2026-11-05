@@ -1,0 +1,15 @@
+# Names the two groups of pods ("subsets") by their `version` label.
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: hello
+  namespace: config-sync-demo
+spec:
+  host: hello
+  subsets:
+    - name: v1
+      labels:
+        version: v1
+    - name: v2
+      labels:
+        version: v2

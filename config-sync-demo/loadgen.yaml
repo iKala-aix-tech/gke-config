@@ -1,0 +1,25 @@
+# Calls hello twice a second from inside the mesh, so the Console
+# dashboards and topology have traffic to show.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadgen
+  namespace: config-sync-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgen
+  template:
+    metadata:
+      labels:
+        app: loadgen
+    spec:
+      containers:
+        - name: curl
+          image: curlimages/curl:8.10.1
+          command: ["sh", "-c", "while true; do curl -s -o /dev/null http://hello/; sleep 0.5; done"]
+          resources:
+            requests:
+              cpu: 20m
+              memory: 32Mi

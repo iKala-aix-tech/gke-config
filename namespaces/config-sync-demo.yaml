@@ -6,3 +6,4 @@ metadata:
   name: config-sync-demo
   labels:
     managed-by: config-sync
+    istio-injection: enabled   # Cloud Service Mesh adds the Envoy sidecar to new pods

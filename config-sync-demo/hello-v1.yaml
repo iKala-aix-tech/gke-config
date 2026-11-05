@@ -1,18 +1,21 @@
-# Lab 3: `kubectl scale --replicas=5` by hand -> Config Sync puts it back to 2.
+# Mesh lab: v1 of hello. Renamed from `hello` because a Deployment's selector
+# can't change in place; Config Sync prunes the old `hello` and creates this.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello
+  name: hello-v1
   namespace: config-sync-demo
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: hello
+      version: v1
   template:
     metadata:
       labels:
         app: hello
+        version: v1
     spec:
       containers:
         - name: hello
@@ -27,5 +30,5 @@ spec:
                   key: message
           resources:
             requests:
-              cpu: 250m
-              memory: 512Mi
+              cpu: 100m
+              memory: 128Mi
