@@ -1,0 +1,11 @@
+# A typical "platform guardrail" you push to every cluster from git.
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: demo-quota
+  namespace: config-sync-demo
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: 4Gi
+    pods: "10"

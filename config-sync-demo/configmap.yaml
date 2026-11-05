@@ -1,0 +1,8 @@
+# Lab 2: change `message`, commit, push -> watch the cluster update by itself.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-settings
+  namespace: config-sync-demo
+data:
+  message: "hello from git v1"

@@ -1,0 +1,31 @@
+# Lab 3: `kubectl scale --replicas=5` by hand -> Config Sync puts it back to 2.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+  namespace: config-sync-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+        - name: hello
+          image: us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-settings
+                  key: message
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi

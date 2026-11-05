@@ -1,0 +1,8 @@
+# A namespace owned by Config Sync (NOT by Terraform).
+# Rule: one object has one owner. Terraform owns `dev`; Config Sync owns this.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: config-sync-demo
+  labels:
+    managed-by: config-sync
